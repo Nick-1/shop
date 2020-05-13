@@ -16,33 +16,21 @@ class Order(models.Model):
             total += item.item_sum()
         return total
 
-    def save(self, *args, **kwargs):
-        super(Order, self).save(*args, **kwargs)
-        Sale(buyer=self.user)
 
-
-class OrderItems(models.Model):
+class OrderItem(models.Model):
     main_order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     count = models.IntegerField(default=1)
-    product = models.ForeignKey('shop.ProductVersion', on_delete=models.CASCADE, related_name='order_items')
+    storage_product = models.ForeignKey('storage.StorageProduct', on_delete=models.CASCADE, related_name='order_items')
 
     def item_sum(self):
-        return self.count * self.product.price
+        return self.count * self.storage_product.price
 
     def save(self, *args, **kwargs):
-        super(OrderItems, self).save(*args, **kwargs)
-        self.product.count -= self.count
-
-        if self.product.count > 0:
-            Sale(product=self, count=self.count)
-        else:
-            self.product.availability = False
-        self.product.save()
-
-
-
-
-
+        super(OrderItem, self).save(*args, **kwargs)
+        self.storage_product.count -= self.count
+        if self.storage_product.count <= 0:
+            self.storage_product.availability = False
+        self.storage_product.save()
 
 
 class Sale(models.Model):
@@ -54,4 +42,3 @@ class SaleItem(models.Model):
     main_sale = models.ForeignKey(Sale, related_name='sale_items', on_delete=models.CASCADE)
     product = models.ForeignKey('shop.ProductVersion', related_name='sales', on_delete=models.CASCADE)
     count = models.IntegerField(default=1)
-    #seller = models.ForeignKey('shopuser.Seller', related_name='sales', on_delete=models.CASCADE)

@@ -19,7 +19,7 @@ class SupplyItem(models.Model):
 
 class StorageProduct(models.Model):
     product = models.ForeignKey('shop.ProductVersion', related_name='storage_products', on_delete=models.CASCADE)
-    seller = models.ForeignKey('shopuser.Seller', related_name='storage_sellers', on_delete=models.CASCADE)
+    seller = models.ForeignKey('shopuser.Seller', related_name='storage_products', on_delete=models.CASCADE)
     count = models.IntegerField()
     price = models.FloatField()
     availability = models.BooleanField()

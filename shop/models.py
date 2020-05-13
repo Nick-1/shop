@@ -74,3 +74,4 @@ class ProductVersion(models.Model):
 
 class ProductReviews(models.Model):
     pass
+
