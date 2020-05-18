@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>storage detail</title>
+</head>
+<body>
+    <h1>Product: {{ product }}</h1>
+
+    <h2>Prices history</h2>
+    <ul>
+        {% for story in prices_story %}
+        <li>{{ story.date }} / {{ story.price }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <h1>{{ user }}</h1>
+    <h3>Sales:</h3>
+    <ul>
+        {% for sale in sales %}
+        <li>{{ sale }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Users who bought product from me:</h3>
+    <ul>
+        {% for user in my_users %}
+        <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>category users:</h3>
+    <ul>
+        {% for user in users_in_category %}
+        <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>my products:</h3>
+    <ul>
+        {% for product in products %}
+        <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

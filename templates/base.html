@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Sellers</h1>
+    <ul>
+        {% for seller in sellers %}
+        <li><a href="/users/sellers/{{ seller.id }}">{{ seller.user.username }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h1>Customers</h1>
+    <ul>
+        {% for customer in customers %}
+        <li><a href="/users/customers/{{ customer.id }}">{{ customer.user.username }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h1>Categories info</h1>
+    <ul>
+        <li><a href="/categories/">Info</a></li>
+    </ul>
+
+    <h1>Storage</h1>
+    <ul>
+        <li><a href="/storage/">Info</a></li>
+    </ul>
+
+    <h1>Orders info</h1>
+        <ul>
+            <li>Averange time delivery for all orders  {{ averange }}</li>
+        </ul>
+
+    <h1>Product prices which had been changed while order was coming to customer</h1>
+    <ul>
+        {% for item in items_with_changed_price %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Products which has more than 2 sellers</h1>
+    <ul>
+        {% for product in products_with_more_than_2_sellers %}
+        <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
